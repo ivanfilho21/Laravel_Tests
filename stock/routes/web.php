@@ -1,6 +1,5 @@
 <?php
 
-Route::get("/", function()
-    {
-        return "Page not found <br><b>this is a custom route in /routes/web.php</b>";
-    });
+Route::get("/", function() { return "Hello World"; });
+
+Route::get("/products", "ProductController@list");
