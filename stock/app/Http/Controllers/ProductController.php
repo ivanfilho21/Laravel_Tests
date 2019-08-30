@@ -32,7 +32,6 @@ class ProductController
 
     private function getView($viewName, $viewData = array())
     {
-        $products = DB::select("select * from produtos");
-        return (view()->exists("products")) ? view("products")->with("products", $products) : "Page Not Found";
+        return (view()->exists("products")) ? view($viewName, $viewData) : "Page Not Found";
     }
 }
