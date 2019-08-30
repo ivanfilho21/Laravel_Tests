@@ -5,22 +5,21 @@
 	<link href="/css/app.css" rel="stylesheet">
 </head>
 <body>
+
 	<nav>
 		<ul>
 			<li><a href="#">List</a></li>
 			<li><a href="#">New Product</a></li>
 		</ul>
 	</nav>
+
 	<div class="container">
-		<h1>Produtos</h1>
+		<h1>Products</h1>
 
 		<table class="table table-striped table-bordered table-hover">
 		<?php foreach ($products as $p): ?>
 			<tr>
 				<td><?= $p->nome ?></td>
-				<td>R$ <?= $p->valor ?></td>
-				<td><?= $p->descricao ?></td>
-				<td><?= $p->quantidade ?></td>
 
 				<td>
 					<a href="produto?id=<?= $p->id ?>" class="btn btn-default">
@@ -33,6 +32,10 @@
 						<span class="glyphicon glyphicon-trash"></span>
 					</a>
 				</td>
+
+				<td><?= $p->valor ?></td>
+				<td><?= $p->descricao ?></td>
+				<td><?= $p->quantidade ?></td>
 			</tr>
 		<?php endforeach ?>
 		</table>
