@@ -9,11 +9,6 @@ class ProductController
     public function list()
     {
         $products = DB::select("select * from produtos");
-        $ul = "<ul>";
-        foreach ($products as $p) {
-            $ul .= "<li>" .$p->nome ." " .$p->descricao ."</li>";
-        }
-        $ul .= "</ul>";
-        return "<h1>Products</h1>" .$ul;
+        return view("products")->with("products", $products);
     }
 }
