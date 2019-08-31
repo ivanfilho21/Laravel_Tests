@@ -7,6 +7,12 @@
 	@if (empty($products))
 	<div class="alert alert-warning">Você não tem produtos.</div>
 	@else
+		@if (old("name"))
+		<div class="alert alert-success">
+			<strong>O produto {{ old("name") }} foi adicionado.</strong>
+		</div>
+		@endif
+
 	<table class="table table-striped table-bordered table-hover">
 	@foreach ($products as $p)
 		<tr class="{{ ($p->quantidade <= 1) ? "danger" : "" }}">
