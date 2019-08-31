@@ -19,10 +19,11 @@ class ProductController
 
     public function open()
     {
-    	$id = Request::input("id", 0);
+        // $id = Request::input("id", 0);
+    	$id = Request::route("id", 0);
     	$product = DB::select("SELECT * FROM produtos WHERE id = :id", array(":id" => $id));
 
-    	if (empty($id)) return "Produto não existe";
+    	if (empty($product)) return "Produto não existe";
 
     	$data = array(
     		"p" => $product[0]
