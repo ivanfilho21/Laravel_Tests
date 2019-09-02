@@ -3,13 +3,15 @@
 namespace stock\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use stock\Product;
 use Request;
 
 class ProductController
 {
     public function list()
     {
-        $products = DB::select("SELECT * FROM produtos");
+        // $products = DB::select("SELECT * FROM produtos");
+        $products = Product::all();
 
         $data = array(
         	"products" => $products
@@ -19,7 +21,7 @@ class ProductController
 
     public function listJson()
     {
-        $products = DB::select("SELECT * FROM produtos");
+        $products = Product::all();
 
         // Returns a JSON by default
         // return $products;
@@ -30,12 +32,12 @@ class ProductController
     {
         // $id = Request::input("id", 0);
     	$id = Request::route("id", 0);
-    	$product = DB::select("SELECT * FROM produtos WHERE id = :id", array(":id" => $id));
+    	$product = Product::find($id);
 
     	if (empty($product)) return "Produto não existe";
 
     	$data = array(
-    		"p" => $product[0]
+    		"p" => $product
     	);
     	return $this->getView("product", $data);
     }
@@ -48,17 +50,33 @@ class ProductController
     public function add()
     {
         // $inputs = Request::all();
-        $name = Request::input("name");
-        $desc = Request::input("description");
-        $price = Request::input("price");
-        $qty = Request::input("qty");
+        $prod = new Product();
+        $prod->nome = Request::input("name");
+        $prod->descricao = Request::input("description");
+        $prod->valor = Request::input("price");
+        $prod->quantidade = Request::input("qty");
 
-        DB::insert("INSERT INTO produtos(nome, quantidade, valor, descricao) values(?, ?, ?, ?)", array($name, $qty, $price, $desc));
+        $prod->save();
+
+        // DB::insert("INSERT INTO produtos(nome, quantidade, valor, descricao) values(?, ?, ?, ?)", array($name, $qty, $price, $desc));
 
         // return redirect("/produtos")->withInput(Request::only("name"));
-        return redirect("/produtos")
+        return redirect()
                     ->action("ProductController@list")
                     ->withInput(Request::only("name"));
+    }
+
+    public function edit()
+    {}
+
+    public function delete()
+    {
+        $id = Request::route("id", 0);
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()
+                    ->action("ProductController@list");
     }
 
     private function getView($viewName, $viewData = array())
