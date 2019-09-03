@@ -5,6 +5,7 @@ namespace stock\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use stock\Product;
 use Request;
+use stock\Http\Requests\ProductRequest;
 
 class ProductController
 {
@@ -42,19 +43,27 @@ class ProductController
     	return $this->getView("product", $data);
     }
 
-    public function create()
+    public function createEdit()
     {
-        return $this->getView("product-form");
+        $id = Request::route("id", 0);
+        $product = Product::find($id);
+
+        $data = array(
+            "p" => $product
+        );
+        return $this->getView("product-form", $data);
     }
 
-    public function add()
+    public function save(ProductRequest $request)
     {
         // $inputs = Request::all();
-        $prod = new Product();
-        $prod->nome = Request::input("name");
-        $prod->descricao = Request::input("description");
-        $prod->valor = Request::input("price");
-        $prod->quantidade = Request::input("qty");
+        $prod = Product::find($request->input("id"));
+        $prod = ! empty($prod) ? $prod : new Product();
+
+        $prod->nome = $request->input("name");
+        $prod->descricao = $request->input("description");
+        $prod->valor = $request->input("price");
+        $prod->quantidade = $request->input("qty");
 
         $prod->save();
 
@@ -63,7 +72,7 @@ class ProductController
         // return redirect("/produtos")->withInput(Request::only("name"));
         return redirect()
                     ->action("ProductController@list")
-                    ->withInput(Request::only("name"));
+                    ->withInput(Request::only("name", "id"));
     }
 
     public function edit()
