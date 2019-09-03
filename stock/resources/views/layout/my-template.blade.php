@@ -14,7 +14,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="{{ action("ProductController@list") }}">Produtos</a></li>
-				<li><a href="{{ action("ProductController@create") }}">Novo Produto</a></li>
+				<li><a href="produto">Novo Produto</a></li>
 			</ul>
 		</div>
 	</nav>
