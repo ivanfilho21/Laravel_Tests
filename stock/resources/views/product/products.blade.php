@@ -9,7 +9,7 @@
 	@else
 		@if (old("name"))
 		<div class="alert alert-success">
-			<strong>O produto {{ old("name") }} foi adicionado.</strong>
+			<strong>O produto {{ old("name") }} foi {{ (old("id")) ? "editado" : "adicionado" }}.</strong>
 		</div>
 		@endif
 
