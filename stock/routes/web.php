@@ -14,3 +14,8 @@ Route::get("/produto/editar/{id?}", "ProductController@createEdit")->where("id",
 Route::get("/produto/apagar/{id}", "ProductController@delete")->where("id", "[0-9]+");
 
 Route::get("/mylogin", "MyAuthController@login");
+
+/*Route::get("products/apagar/{id}", array(
+	"middleware" => "my-middleware",
+	"uses" => "ProductController@delete"
+));*/
