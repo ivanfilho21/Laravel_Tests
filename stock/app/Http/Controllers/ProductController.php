@@ -7,8 +7,15 @@ use stock\Product;
 use Request;
 use stock\Http\Requests\ProductRequest;
 
-class ProductController
+class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("my-middleware", array(
+            "only" => array("save, delete")
+        ));
+    }
+
     public function list()
     {
         // $products = DB::select("SELECT * FROM produtos");
