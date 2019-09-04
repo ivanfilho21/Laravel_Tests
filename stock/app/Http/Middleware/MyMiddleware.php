@@ -16,6 +16,6 @@ class MyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::guest()) ? redirect("auth/login") : $next($request);
+        return (! $request->is("login") && Auth::guest()) ? redirect("login") : $next($request);
     }
 }
