@@ -1,6 +1,9 @@
 <?php
 
-Route::get("/", function() { return "Hello World"; });
+// Route::get("/", function() { return "Hello World"; });
+// Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+Route::get("/", "HomeController@index")->name("home");
 
 Route::get("/produtos", "ProductController@list");
 Route::get("/produtos/json", "ProductController@listJson");
