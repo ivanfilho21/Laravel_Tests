@@ -82,9 +82,6 @@ class ProductController extends Controller
                     ->withInput(Request::only("name", "id"));
     }
 
-    public function edit()
-    {}
-
     public function delete()
     {
         $id = Request::route("id", 0);
