@@ -2,7 +2,7 @@
 
 namespace stock\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 
 class HomeController extends Controller
 {
