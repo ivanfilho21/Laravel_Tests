@@ -11,6 +11,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
+        // $this->middleware("auth", array(
         $this->middleware("my-middleware", array(
             "only" => array("save", "delete")
         ));
