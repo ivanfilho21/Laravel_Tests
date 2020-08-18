@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' | '.env('APP_NAME', 'AdminLTE 3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Ice Cream</b> CMS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -188,17 +188,17 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'panel',
 
-    'logout_url' => 'logout',
+    'logout_url' => 'panel/logout',
 
-    'login_url' => 'login',
+    'login_url' => 'panel/login',
 
-    'register_url' => 'register',
+    'register_url' => 'panel/register',
 
-    'password_reset_url' => 'password/reset',
+    'password_reset_url' => 'panel/password/reset',
 
-    'password_email_url' => 'password/email',
+    'password_email_url' => 'panel/password/email',
 
     'profile_url' => false,
 
