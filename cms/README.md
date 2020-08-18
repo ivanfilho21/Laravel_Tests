@@ -2,6 +2,12 @@
 
 Um mini sistema de gerenciamento de conteúdo.
 
+### Requirements
+1. AdminLTE:
+```cmd
+composer require jeroennoten/laravel-adminlte
+```
+
 ### Tabelas do banco de dados
 ```sql
 CREATE TABLE `users` (
