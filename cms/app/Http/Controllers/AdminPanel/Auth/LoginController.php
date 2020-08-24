@@ -7,13 +7,14 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::PANEL_HOME;
 
     public function __construct()
     {
@@ -27,5 +28,11 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {}
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect($this->redirectTo);
+    }
 
 }
