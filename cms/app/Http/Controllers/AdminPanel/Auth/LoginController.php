@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,21 @@ class LoginController extends Controller
     }
 
     public function authenticate(Request $request)
-    {}
+    {
+        $dados = $request->only(['email', 'password']);
+        $validator = Validator::make($dados, [
+            'email' => '',
+            'password' => ''
+        ]);
+        $remember = $request->input('remember', false);
+
+        if (Auth::attempt($dados, $remember)) {
+            return redirect($this->redirectTo);
+        }
+
+        $validator->errors()->add('password', __('auth.failed'));
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
 
     public function logout()
     {
