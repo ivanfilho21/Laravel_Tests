@@ -5,12 +5,15 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\User;
+
 class UserController extends Controller
 {
 
     public function index()
     {
-        return view('admin_panel.users.index');
+        $list = User::all();
+        return view('admin_panel.users.index', ['users' => $list]);
     }
 
     /**
