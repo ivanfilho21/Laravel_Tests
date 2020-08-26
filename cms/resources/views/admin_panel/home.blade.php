@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Painel')
+@section('title', __('titles.panel'))
 
 @section('css')
 @endsection
