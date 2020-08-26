@@ -11,6 +11,8 @@ Route::prefix('panel')->group(function () {
     Route::get('/register', 'AdminPanel\Auth\RegisterController@index')->name('panel.register');
     Route::post('/register', 'AdminPanel\Auth\RegisterController@register');
     Route::post('/logout', 'AdminPanel\Auth\LoginController@logout')->name('panel.logout');
+
+    Route::post('/users', 'AdminPanel\UserController@index')->name('panel.users');
 });
 
 // Auth::routes();
