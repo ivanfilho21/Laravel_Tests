@@ -231,35 +231,40 @@ return [
     */
 
     'menu' => [
-        [
+        /* [
             'text' => 'search',
             'search' => true,
             'topnav' => true,
-        ],
+        ], */
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Dashboard',
+            'url'         => 'panel',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'label'       => null,
             'label_color' => 'success',
+        ],
+        [
+            'text' => 'pages',
+            'url'  => 'panel/pages',
+            'icon' => 'fas fa-fw fa-file',
+        ],
+        [
+            'text' => 'users',
+            'url'  => 'panel/users',
+            'icon' => 'fas fa-fw fa-users',
         ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'panel/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
+        /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -296,8 +301,8 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], */
+        /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -312,7 +317,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
