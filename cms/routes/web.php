@@ -12,7 +12,7 @@ Route::prefix('panel')->group(function () {
     Route::post('/register', 'AdminPanel\Auth\RegisterController@register');
     Route::post('/logout', 'AdminPanel\Auth\LoginController@logout')->name('panel.logout');
 
-    Route::post('/users', 'AdminPanel\UserController@index')->name('panel.users');
+    Route::resource('users', 'AdminPanel\UserController');
 });
 
 // Auth::routes();
