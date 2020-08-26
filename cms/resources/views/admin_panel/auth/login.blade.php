@@ -1,2 +1,2 @@
 @extends('adminlte::auth.login')
-@section('title', 'Login')
+@section('title', __('titles.login'))
