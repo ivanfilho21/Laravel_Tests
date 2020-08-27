@@ -10,9 +10,9 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Actions</th>
+            <th>{{ __('attribs.name') }}</th>
+            <th>{{ __('attribs.email') }}</th>
+            <th>{{ __('util.actions') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +22,8 @@
             <td>{{ $u->name }}</td>
             <td>{{ $u->email }}</td>
             <td>
-                <a class="btn btn-sm btn-info" href="{{ route('users.edit', ['user' => $u->id]) }}">Edit</a>
-                <a class="btn btn-sm btn-danger" href="{{ route('users.destroy', ['user' => $u->id]) }}">Delete</a>
+                <a class="btn btn-sm btn-info" href="{{ route('users.edit', ['user' => $u->id]) }}">{{ __('util.edit') }}</a>
+                <a class="btn btn-sm btn-danger" href="{{ route('users.destroy', ['user' => $u->id]) }}">{{ __('util.delete') }}</a>
             </td>
         </tr>
         @endforeach
