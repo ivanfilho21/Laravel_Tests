@@ -6,6 +6,15 @@
 @endsection
 
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-check"></i>{{ __('util.alert') }}</h5>
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="card">
     <div class="card-body">
         <table class="table table-hover">
