@@ -7,5 +7,6 @@ return [
     'register' => 'Sign Up',
     'users' => 'Users',
     'users_create' => 'New User',
+    'users_edit' => 'Edit User',
 
 ];
