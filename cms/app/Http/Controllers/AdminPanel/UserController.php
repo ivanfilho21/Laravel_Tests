@@ -13,8 +13,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $list = User::all();
-        return view('admin_panel.users.index', ['users' => $list]);
+        return view('admin_panel.users.index', ['users' => User::paginate(10)]);
     }
 
     public function create()
