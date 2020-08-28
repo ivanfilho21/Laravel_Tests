@@ -109,7 +109,8 @@ class UserController extends Controller
             
             # 4.1 Verficar se as senhas coincidem
             $passValidator = Validator::make([
-                'password' => $data['password']
+                'password' => $data['password'],
+                'password_confirmation' => $data['password_confirmation']
             ], [
                 'password' => ['string', 'min:6', 'confirmed']
             ]);
@@ -123,6 +124,7 @@ class UserController extends Controller
         }
 
         $user->save();
+        return redirect()->route('users.index')->with('success', __('util.users_update_success'));
     }
 
     /**
