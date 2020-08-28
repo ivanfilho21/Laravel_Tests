@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'Nome',
+    'name' => 'Name',
     'email' => 'Email',
     'password' => 'Password',
     'password_confirmation' => 'Confirm the password'
