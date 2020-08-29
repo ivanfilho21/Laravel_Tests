@@ -34,11 +34,13 @@
                     <td>{{ $u->email }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ route('users.edit', ['user' => $u->id]) }}">{{ __('util.edit') }}</a>
-                        <form class="d-inline" action="{{ route('users.destroy', ['user' => $u->id]) }}" method="post">
+                        @if (Auth::id() != $u->id)
+                        <form class="d-inline" action="{{ route('users.destroy', ['user' => $u->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_users', ['user' => $u->name]) }}');">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
                         </form>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
