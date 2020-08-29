@@ -15,6 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:edit-users');
     }
 
     public function index()
@@ -46,6 +47,8 @@ class UserController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'type' => User::TYPE_NORMAL,
+            'created_by' => Auth::id(),
         ]);
 
         return redirect()->route('users.index');
