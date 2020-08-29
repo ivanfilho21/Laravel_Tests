@@ -12,6 +12,11 @@ use App\User;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin_panel.users.index', ['users' => User::paginate(10)]);
