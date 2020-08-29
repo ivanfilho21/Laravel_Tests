@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UserController extends Controller
@@ -127,14 +128,18 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', __('util.users_update_success'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        if (Auth::id() == $id) {
+            return redirect()->back();
+        }
+
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+        }
+
+        return redirect()->route('users.index');
     }
 }
