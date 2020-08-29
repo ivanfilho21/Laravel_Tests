@@ -13,6 +13,8 @@ Route::prefix('panel')->group(function () {
     Route::post('/logout', 'AdminPanel\Auth\LoginController@logout')->name('panel.logout');
 
     Route::resource('users', 'AdminPanel\UserController');
+
+    Route::get('/profile', 'AdminPanel\ProfileController@index')->name('panel.profile');
 });
 
 // Auth::routes();
