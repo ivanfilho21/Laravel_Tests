@@ -2,18 +2,10 @@
 
 return [
 
-    'main_navigation'               => 'Navegação Principal',
+    'main_navigation'               => 'NAVEGAÇÃO PRINCIPAL',
     'pages'                         => 'Páginas',
     'users'                         => 'Usuários',
-    'account_settings'              => 'Configurações da Conta',
+    'account_settings'              => 'CONFIGURAÇÕES DA CONTA',
     'profile'                       => 'Perfil',
-    'change_password'               => 'Mudar Senha',
-    'multilevel'                    => 'Multinível',
-    'level_one'                     => 'Nível 1',
-    'level_two'                     => 'Nível 2',
-    'level_three'                   => 'Nível 3',
-    'labels'                        => 'Etiquetas',
-    'Important'                     => 'Importante',
-    'Warning'                       => 'Aviso',
-    'Information'                   => 'Informação',
+    'settings'                      => 'Configurações',
 ];
