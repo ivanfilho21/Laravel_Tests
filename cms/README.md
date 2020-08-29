@@ -17,6 +17,8 @@ CREATE TABLE `users` (
     `password` VARCHAR(255) NOT NULL,
     `remember_token` VARCHAR(100),
     `email_verified_at` TIMESTAMP NULL,
+    `type` INT UNSIGNED NOT NULL,
+    `created_by` INT UNSIGNED NOT NULL,
     `created_at` TIMESTAMP NULL,
     `updated_at` TIMESTAMP NULL,
     PRIMARY KEY(id)
