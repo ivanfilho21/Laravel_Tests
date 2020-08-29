@@ -34,7 +34,11 @@
                     <td>{{ $u->email }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ route('users.edit', ['user' => $u->id]) }}">{{ __('util.edit') }}</a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('users.destroy', ['user' => $u->id]) }}">{{ __('util.delete') }}</a>
+                        <form class="d-inline" action="{{ route('users.destroy', ['user' => $u->id]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
+                        </form>
                     </td>
                 </tr>
                 @endforeach
