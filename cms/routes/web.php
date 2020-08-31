@@ -16,6 +16,9 @@ Route::prefix('panel')->group(function () {
 
     Route::get('/profile', 'AdminPanel\ProfileController@index')->name('panel.profile');
     Route::put('/profile', 'AdminPanel\ProfileController@update')->name('panel.profile.save');
+
+    Route::get('/settings', 'AdminPanel\SettingsController@index')->name('panel.settings');
+    Route::put('/settings', 'AdminPanel\SettingsController@index')->name('panel.settings.save');
 });
 
 // Auth::routes();
