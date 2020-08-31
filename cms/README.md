@@ -26,7 +26,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `settings` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(100) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
     `value` TEXT,
     `created_by` INT UNSIGNED NOT NULL,
     `created_at` TIMESTAMP NULL,
