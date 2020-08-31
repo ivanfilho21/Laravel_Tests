@@ -257,7 +257,7 @@ return [
         [
             'text' => 'users',
             'url'  => 'panel/users',
-            'icon' => 'far fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-users',
             'can'  => 'edit-users',
         ],
         ['header' => 'account_settings'],
