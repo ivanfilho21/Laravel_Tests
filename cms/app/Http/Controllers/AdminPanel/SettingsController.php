@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\AdminPanel;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Settings;
 
 class SettingsController extends Controller
 {
@@ -15,7 +16,14 @@ class SettingsController extends Controller
 
     public function index()
     {
-        return view('admin_panel.settings.index');
+        $settings = [];
+        $sett = Settings::get();
+
+        foreach ($sett as $s) {
+            $settings[$s['name']] = $s['value'];
+        }
+
+        return view('admin_panel.settings.index', ['settings' => $settings]);
     }
 
 }
