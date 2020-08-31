@@ -9,6 +9,6 @@ return [
     'users_create' => 'New User',
     'users_edit' => 'Edit User',
     'profile' => 'Profile',
-    'settings' => 'Settings',
+    'settings' => 'Site Settings',
 
 ];
