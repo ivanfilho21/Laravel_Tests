@@ -8,5 +8,6 @@ return [
     'users' => 'Users',
     'users_create' => 'New User',
     'users_edit' => 'Edit User',
+    'profile' => 'Profile',
 
 ];
