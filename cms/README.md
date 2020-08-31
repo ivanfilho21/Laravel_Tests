@@ -23,4 +23,14 @@ CREATE TABLE `users` (
     `updated_at` TIMESTAMP NULL,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE `settings` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(100) NOT NULL,
+    `value` TEXT,
+    `created_by` INT UNSIGNED NOT NULL,
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL,
+    PRIMARY KEY(id)
+);
 ```
