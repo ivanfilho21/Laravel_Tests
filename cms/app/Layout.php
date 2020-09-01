@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class Layout extends Model
 {
     
-    protected $table = 'settings';
+    protected $table = 'site_settings';
 }

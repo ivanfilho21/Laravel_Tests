@@ -267,9 +267,9 @@ return [
             'icon' => 'far fa-fw fa-user-circle',
         ],
         [
-            'text' => 'settings',
-            'url'  => 'panel/settings',
-            'icon' => 'far fa-fw fa-sun'
+            'text' => 'layout',
+            'url'  => 'panel/layout',
+            'icon' => 'far fa-fw fa-object-group'
         ]
     ],
 

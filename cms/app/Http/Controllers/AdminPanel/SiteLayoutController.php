@@ -5,9 +5,9 @@ namespace App\Http\Controllers\AdminPanel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Settings;
+use App\Layout;
 
-class SettingsController extends Controller
+class SiteLayoutController extends Controller
 {
 
     public function __construct()
@@ -17,14 +17,14 @@ class SettingsController extends Controller
 
     public function index()
     {
-        $settings = [];
-        $sett = Settings::get();
+        $layout = [];
+        $list = Layout::get();
 
-        foreach ($sett as $s) {
-            $settings[$s['name']] = $s['value'];
+        foreach ($list as $v) {
+            $layout[$v['name']] = $v['value'];
         }
 
-        return view('admin_panel.settings.index', ['settings' => $settings]);
+        return view('admin_panel.layout.index', ['layout' => $layout]);
     }
 
     public function save(Request $request)
@@ -48,12 +48,12 @@ class SettingsController extends Controller
         }
 
         foreach ($data as $key => $value) {
-            Settings::where('name', $key)->update([
+            Layout::where('name', $key)->update([
                 'value' => $value
             ]);
         }
 
-        return redirect()->back()->with('success', __('util.site_settings_update_success'));
+        return redirect()->back()->with('success', __('util.layout_update_success'));
     }
 
 }

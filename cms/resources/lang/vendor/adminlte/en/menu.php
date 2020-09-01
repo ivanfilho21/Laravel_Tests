@@ -7,5 +7,5 @@ return [
     'users'                         => 'Users',
     'account_settings'              => 'ACCOUNT SETTINGS',
     'profile'                       => 'Profile',
-    'settings'                      => 'Settings',
+    'layout'                        => 'Layout',
 ];

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('titles.settings'))
+@section('title', __('titles.layout'))
 
 @section('content_header')
-    <h1>{{ __('titles.settings') }}</h1>
+    <h1>{{ __('titles.layout') }}</h1>
 @endsection
 
 @section('content')
@@ -15,39 +15,39 @@
     </div>
     @endif
 
-    <form action="{{ route('panel.settings.save') }}" method="post">
+    <form action="{{ route('panel.layout.save') }}" method="post">
         @csrf
         @method('PUT')
 
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('site_settings.title') }}:</label>
-                    <input type="text" name="title" id="" value="{{ old('title', $settings['title']) }}" class="form-control @error('title') is-invalid @enderror">
+                    <label for="" class="col-form-label">{{ __('layout.title') }}:</label>
+                    <input type="text" name="title" id="" value="{{ old('title', $layout['title']) }}" class="form-control @error('title') is-invalid @enderror">
                     @error('title')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('site_settings.subtitle') }}:</label>
-                    <input type="text" name="subtitle" id="" value="{{ old('subtitle', $settings['subtitle']) }}" class="form-control @error('subtitle') is-invalid @enderror">
+                    <label for="" class="col-form-label">{{ __('layout.subtitle') }}:</label>
+                    <input type="text" name="subtitle" id="" value="{{ old('subtitle', $layout['subtitle']) }}" class="form-control @error('subtitle') is-invalid @enderror">
                     @error('subtitle')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('site_settings.bg_color') }}:</label>
-                    <input type="color" name="bg_color" id="" value="{{ old('bg_color', $settings['bg_color']) }}" class="form-control" style="width: 50px;">
+                    <label for="" class="col-form-label">{{ __('layout.bg_color') }}:</label>
+                    <input type="color" name="bg_color" id="" value="{{ old('bg_color', $layout['bg_color']) }}" class="form-control" style="width: 50px;">
                     @error('bg_color')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('site_settings.pri_txt_color') }}:</label>
-                    <input type="color" name="pri_txt_color" id="" value="{{ old('pri_txt_color', $settings['pri_txt_color']) }}" class="form-control" style="width: 50px;">
+                    <label for="" class="col-form-label">{{ __('layout.pri_txt_color') }}:</label>
+                    <input type="color" name="pri_txt_color" id="" value="{{ old('pri_txt_color', $layout['pri_txt_color']) }}" class="form-control" style="width: 50px;">
                     @error('pri_txt_color')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
