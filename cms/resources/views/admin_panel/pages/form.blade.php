@@ -30,45 +30,18 @@ $pageTitle = __('titles.pages_' .($editMode ? 'edit' : 'create'))
             </div>
 
             <div class="form-group row">
-                <label for="" class="col-sm-2 control-label">{{ __('attribs.email') }}:</label>
+                <label for="" class="col-sm-2 control-label">{{ __('attribs.body') }}:</label>
                 <div class="col-sm-10">
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
-                </div>
-                @error('email')
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                    <span style="color: #dd4b39;">{{ $message }}</span>
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group row">
-                <label for="" class="col-sm-2 control-label">{{ __('attribs.password') }}:</label>
-                <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                </div>
-                @error('password')
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                    <span style="color: #dd4b39;">{{ $message }}</span>
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group row">
-                <label for="" class="col-sm-2 control-label">{{ __('attribs.password_confirmation') }}:</label>
-                <div class="col-sm-10">
-                    <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror">
+                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{ old('body') }}</textarea>
                 </div>
             </div>
-        </div>
 
         <div class="card-footer">
             <div class="form-group row">
                 <div class="row">
                     <label for="" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
-                        <input type="submit" value="{{ __('util.create') }}" class="btn btn-success">
+                        <input type="submit" value="{{ __('util.' .($editMode ? 'edit' : 'create')) }}" class="btn btn-success">
                     </div>
                 </div>
             </div>
