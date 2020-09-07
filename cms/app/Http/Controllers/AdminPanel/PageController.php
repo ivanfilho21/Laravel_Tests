@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Page;
@@ -26,15 +27,32 @@ class PageController extends Controller
         return view('admin_panel.pages.form', ['editMode' => false]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['title', 'body']);
+        $data['slug'] = Str::slug($data['title'], '-');
+
+        $validator = Validator::make($data, [
+            'title' => ['required', 'string', 'max:100'],
+            'slug' => ['required', 'string', 'unique:pages'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Page::create([
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'slug' => $data['slug'],
+            'created_by' => Auth::id(),
+            // 'created_at' => ,
+            // 'updated_at' => ,
+        ]);
+
+        return redirect()->route('pages.index');
     }
 
     /**
