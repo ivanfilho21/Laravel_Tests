@@ -3,25 +3,27 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Page;
 
 class PageController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin_panel.pages.index', ['pages' => Page::paginate(10)]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin_panel.pages.form', ['editMode' => false]);
     }
 
     /**
