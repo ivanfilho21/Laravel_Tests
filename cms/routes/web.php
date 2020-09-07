@@ -19,6 +19,8 @@ Route::prefix('panel')->group(function () {
 
     Route::get('/layout', 'AdminPanel\SiteLayoutController@index')->name('panel.layout');
     Route::put('/layout', 'AdminPanel\SiteLayoutController@save')->name('panel.layout.save');
+
+    Route::resource('pages','AdminPanel\PageController');
 });
 
 // Auth::routes();
