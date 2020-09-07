@@ -97,6 +97,12 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $page = Page::find($id);
+
+        if ($page) {
+            $page->delete();
+        }
+
+        return redirect()->route('pages.index');
     }
 }
