@@ -19,7 +19,7 @@ $pageTitle = __('titles.pages_' .($editMode ? 'edit' : 'create'))
             <div class="form-group row">
                 <label for="" class="col-sm-2 control-label">{{ __('attribs.title') }}:</label>
                 <div class="col-sm-10">
-                    <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror">
+                    <input type="text" autofocus autocomplete="off" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror">
                 </div>
                 @error('title')
                 <div class="col-sm-2"></div>
