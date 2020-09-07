@@ -4,17 +4,14 @@ namespace App\Http\Controllers\AdminPanel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Page;
 
 class PageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('admin_panel.pages.index', ['pages' => Page::paginate(10)]);
     }
 
     /**
