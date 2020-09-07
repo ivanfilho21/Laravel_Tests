@@ -29,16 +29,15 @@
                 @foreach($pages as $p)
                 <tr>
                     <td>{{ $p->id }}</td>
-                    <td>{{ $p->title }}</td>
+                    <td><a href="" target="_blank">{{ $p->title }}</a></td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ route('pages.edit', ['page' => $p->id]) }}">{{ __('util.edit') }}</a>
-                        @if (Auth::id() != $p->id)
+
                         <form class="d-inline" action="{{ route('pages.destroy', ['page' => $p->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_pages', ['page' => $p->title]) }}');">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
                         </form>
-                        @endif
                     </td>
                 </tr>
                 @endforeach
