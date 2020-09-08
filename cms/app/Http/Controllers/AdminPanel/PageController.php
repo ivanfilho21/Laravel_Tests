@@ -48,8 +48,6 @@ class PageController extends Controller
             'body' => $data['body'],
             'slug' => $data['slug'],
             'created_by' => Auth::id(),
-            // 'created_at' => ,
-            // 'updated_at' => ,
         ]);
 
         return redirect()->route('pages.index');
