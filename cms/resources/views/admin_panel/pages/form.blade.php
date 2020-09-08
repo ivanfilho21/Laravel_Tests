@@ -1,7 +1,3 @@
-@php
-$pageTitle = __('titles.pages_' .($editMode ? 'edit' : 'create'))
-@endphp
-
 @extends('adminlte::page')
 @section('title', $pageTitle)
 
@@ -11,15 +7,18 @@ $pageTitle = __('titles.pages_' .($editMode ? 'edit' : 'create'))
 
 @section('content')
 
-<form action="{{ route('pages.store') }}" method="post" class="form-horizontal">
+<form action="{{ $formAction }}" method="post" class="form-horizontal">
     @csrf
+    @if ($editMode)
+        @method('PUT')
+    @endif
 
     <div class="card">
         <div class="card-body">
             <div class="form-group row">
                 <label for="" class="col-sm-2 control-label">{{ __('attribs.title') }}:</label>
                 <div class="col-sm-10">
-                    <input type="text" autofocus autocomplete="off" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror">
+                    <input type="text" autocomplete="off" name="title" value="{{ old('title', $page->title) }}" @if (! $editMode) autofocus @endif class="form-control @error('title') is-invalid @enderror">
                 </div>
                 @error('title')
                 <div class="col-sm-2"></div>
@@ -32,7 +31,7 @@ $pageTitle = __('titles.pages_' .($editMode ? 'edit' : 'create'))
             <div class="form-group row">
                 <label for="" class="col-sm-2 control-label">{{ __('attribs.body') }}:</label>
                 <div class="col-sm-10">
-                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{ old('body') }}</textarea>
+                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{ old('body', $page->body) }}</textarea>
                 </div>
             </div>
 
