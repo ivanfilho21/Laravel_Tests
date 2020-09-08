@@ -64,15 +64,10 @@ class PageController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $page = Page::find($id);
+        return $page ? view('admin_panel.pages.form', ['editMode' => true, 'page' => $page]) : redirect()->back();
     }
 
     /**
