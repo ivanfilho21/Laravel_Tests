@@ -24,7 +24,12 @@ class PageController extends Controller
 
     public function create()
     {
-        return view('admin_panel.pages.form', ['editMode' => false]);
+        return view('admin_panel.pages.form', [
+            'page' => new Page(),
+            'editMode' => false,
+            'pageTitle' => __('titles.pages_create'),
+            'formAction' => route('pages.store'),
+        ]);
     }
 
     public function store(Request $request)
@@ -67,7 +72,14 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        return $page ? view('admin_panel.pages.form', ['editMode' => true, 'page' => $page]) : redirect()->back();
+        if (! $page) return redirect()->back();
+    
+        return view('admin_panel.pages.form', [
+            'page' => $page,
+            'editMode' => true,
+            'pageTitle' => __('titles.pages_edit'),
+            'formAction' => route('pages.update', ['page' => $page->id]),
+        ]);
     }
 
     /**
