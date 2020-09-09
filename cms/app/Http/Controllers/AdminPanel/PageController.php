@@ -138,4 +138,21 @@ class PageController extends Controller
 
         return redirect()->route('pages.index');
     }
+
+    private function equals($str1, $str2)
+    {
+        $str1 = $this->removeAccents($str1);
+        $str2 = $this->removeAccents($str2);
+        return strcasecmp($str1, $str2) == 0;
+    }
+
+    private function removeAccents($str) {
+        return iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+    }
+
+    private function generateSlug($str)
+    {
+        return Str::slug($str, '-');
+    }
+
 }
