@@ -24,13 +24,18 @@ class PageController extends Controller
 
     public function create()
     {
-        return view('admin_panel.pages.form', ['editMode' => false]);
+        return view('admin_panel.pages.form', [
+            'page' => new Page(),
+            'editMode' => false,
+            'pageTitle' => __('titles.pages_create'),
+            'formAction' => route('pages.store'),
+        ]);
     }
 
     public function store(Request $request)
     {
         $data = $request->only(['title', 'body']);
-        $data['slug'] = Str::slug($data['title'], '-');
+        $data['slug'] = $this->generateSlug($data['title']);
 
         $validator = Validator::make($data, [
             'title' => ['required', 'string', 'max:100'],
@@ -64,27 +69,63 @@ class PageController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $page = Page::find($id);
+        if (! $page) return redirect()->back();
+    
+        return view('admin_panel.pages.form', [
+            'page' => $page,
+            'editMode' => true,
+            'pageTitle' => __('titles.pages_edit'),
+            'formAction' => route('pages.update', ['page' => $page->id]),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $page = Page::find($id);
+        if (! $page) return redirect()->back();
+
+        $data = $request->only('title', 'body');
+
+        # Inicializa com o valor atual de slug
+        $data['slug'] = $page->slug;
+
+        # As regras de validação
+        $validationRules = [];
+        $validationRules['title'] = ['required', 'string', 'max:100'];
+
+        # 1. verificamos se o título foi alterado. Se sim geramos um novo slug e adicionamos para validação
+        if (! $this->equals($data['title'], $page->title)) {
+            $data['slug'] = $this->generateSlug($data['title']);
+            $validationRules['slug'] = ['required', 'string', 'unique:pages'];
+        }
+
+        # 2. Gera o objeto de Validator com base nas chaves de validationRules
+        $dataToValidate = [];
+        foreach ($validationRules as $k => $v) {
+            if (! isset($data[$k])) continue;
+            $dataToValidate[$k] = $data[$k];
+        }
+        $validator = Validator($dataToValidate, $validationRules);
+
+        # 3. Verifica se a validação falhou e então redireciona de volta
+        if ($validator->fails()) {
+            echo '<pre>'.var_export($validator->errors(),1).'</pre>';
+            die;
+            return redirect()->back()
+                ->withErrors($validator)->withInput();
+        }
+
+        # 4. Faz as alterações
+        $page->title = $data['title'];
+        $page->body = $data['body'];
+        $page->slug = $data['slug'];
+        $page->save();
+
+        # Se tudo correu bem, redirecionamos de volta com uma mensagem de sucesso
+        return redirect()->back()->with('success', __('util.pages_update_success'));
     }
 
     public function destroy($id)
@@ -97,4 +138,21 @@ class PageController extends Controller
 
         return redirect()->route('pages.index');
     }
+
+    private function equals($str1, $str2)
+    {
+        $str1 = $this->removeAccents($str1);
+        $str2 = $this->removeAccents($str2);
+        return strcasecmp($str1, $str2) == 0;
+    }
+
+    private function removeAccents($str) {
+        return iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+    }
+
+    private function generateSlug($str)
+    {
+        return Str::slug($str, '-');
+    }
+
 }
