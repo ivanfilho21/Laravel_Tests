@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 control-label">{{ __('attribs.body') }}:</label>
                 <div class="col-sm-10">
-                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{ old('body', $page->body) }}</textarea>
+                    <textarea name="body" cols="30" rows="10" class="form-control">{{ old('body', $page->body) }}</textarea>
                 </div>
             </div>
 
@@ -47,4 +47,15 @@
         </div>
     </div>
 </form>
+
+<script src="https://cdn.tiny.cloud/1/5rvi4e9sj64xykloqo2untzya5o4m38tmzpl8r21jou4m7ae/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea.form-control',
+      menubar: false,
+      plugins: ['link', 'table', 'image', 'autoresize', 'lists'],
+      toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright justify',
+      toolbar_mode: 'floating',
+    });
+  </script>
 @endsection
