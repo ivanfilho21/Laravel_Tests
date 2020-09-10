@@ -54,8 +54,14 @@
       selector: 'textarea.form-control',
       menubar: false,
       plugins: ['link', 'table', 'image', 'autoresize', 'lists'],
-      toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright justify',
+      toolbar: 'undo redo | formatselect | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | numlist bullist checklist | image link',
       toolbar_mode: 'floating',
+      content_css: [
+          '{{ asset('assets/css/content.css') }}'
+      ],
+      images_upload_url: '{{ route('image-upload') }}',
+      images_upload_credentials: true,
+      convert_urls: false,
     });
   </script>
 @endsection
