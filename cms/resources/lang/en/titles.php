@@ -3,6 +3,7 @@
 return [
 
     'panel' => 'Panel',
+    'dashboard' => 'Dashboard',
     'login' => 'Sign In',
     'register' => 'Sign Up',
     'pages' => 'Pages',
@@ -13,5 +14,9 @@ return [
     'users_edit' => 'Edit User',
     'profile' => 'Profile',
     'layout' => 'Layout',
+    'online_users' => 'Online Users',
+    'visitors' => 'Visitors',
+
+    'most_visited' => 'Most Visited',
 
 ];
