@@ -44,4 +44,14 @@ CREATE TABLE `pages` (
     `updated_at` TIMESTAMP NULL,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE `visitors` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `ip` VARCHAR(100),
+    `page_id` INT UNSIGNED NOT NULL,
+    `accessed_at` TIMESTAMP NULL,
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`)
+);
 ```
