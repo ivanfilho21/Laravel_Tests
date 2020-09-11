@@ -26,12 +26,45 @@ class HomeController extends Controller
         $online = count($onlineList);
         $pages = Page::count();
         $users = User::count();
+
+        $pagePie = [
+            'Pg 1' => 1,
+            'Pg 2' => 3,
+            'Pg 3' => 2,
+        ];
+
+        $pageLabels = json_encode(array_keys($pagePie));
+        $pageValues = json_encode(array_values($pagePie));
+        $pageColors = [];
+
+        foreach ($pagePie as $k => $v) {
+            $pageColors[] = $this->generateRandomColor();
+        }
+
+        $pageColors = json_encode(array_values($pageColors));
+
         return view('admin_panel.home', [
             'visits' => $visits,
             'online' => $online,
             'pages' => $pages,
-            'users' => $users
+            'users' => $users,
+            'pageLabels' => $pageLabels,
+            'pageValues' => $pageValues,
+            'pageColors' => $pageColors,
         ]);
+    }
+
+    private function generateRandomColor()
+    {
+        $letters = '0123456789ABCDEF';
+        $color = '#';
+
+        for ($i = 0; $i < 6; $i++) {
+            $index = rand(0, strlen($letters) -1);
+            $color .= $letters[$index];
+        }
+
+        return $color;
     }
 
 }
