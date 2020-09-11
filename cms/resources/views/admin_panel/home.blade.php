@@ -26,7 +26,7 @@
     </div>
 
     <div class="col-lg-3">
-        <div class="small-box bg-success">
+        <div class="small-box @if ($online > 0) bg-success @endif bg-secondary">
             <div class="inner">
                 <h3>{{ $online }}</h3>
                 <p>{{ __('titles.online_users') }}</p>
