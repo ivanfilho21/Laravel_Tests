@@ -14,8 +14,8 @@
     <div class="col-lg-3">
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>999</h3>
-                <p>{{ __('titles.visitors') }}</p>
+                <h3>{{ $visits }}</h3>
+                <p>{{ __('titles.visits') }}</p>
             </div>
             <div class="icon">
                 <i class="far fa-fw fa-eye"></i>
@@ -26,7 +26,7 @@
     <div class="col-lg-3">
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>999</h3>
+                <h3>{{ $online }}</h3>
                 <p>{{ __('titles.online_users') }}</p>
             </div>
             <div class="icon">
@@ -38,7 +38,7 @@
     <div class="col-lg-3">
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3>999</h3>
+                <h3>{{ $pages }}</h3>
                 <p>{{ __('titles.pages') }}</p>
             </div>
             <div class="icon">
@@ -50,7 +50,7 @@
     <div class="col-lg-3">
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>999</h3>
+                <h3>{{ $users }}</h3>
                 <p>{{ __('titles.users') }}</p>
             </div>
             <div class="icon">
@@ -64,7 +64,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h3>Most Visited</h3>
+                <h5>Most Visited</h5>
             </div>
             <div class="card-body">
                 ...
@@ -75,7 +75,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h3>About</h3>
+                <h5>About</h5>
             </div>
             <div class="card-body">
                 ...
