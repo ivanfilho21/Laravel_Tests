@@ -4,6 +4,8 @@
 @section('css')
 @endsection
 
+@section('plugins.Chartjs', true)
+
 @section('content_header')
 <h1>{{ __('titles.dashboard') }}</h1>
 @endsection
@@ -67,7 +69,7 @@
                 <h5>Most Visited</h5>
             </div>
             <div class="card-body">
-                ...
+                <canvas id="pagesPie"></canvas>
             </div>
         </div>
     </div>
@@ -84,7 +86,29 @@
     </div>
 </div>
 
-@endsection
+<script>
+    window.onload = () => {
+        let ctx = document.querySelector('#pagesPie').getContext('2d');
+        window.pagePie = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: {!! $pageValues !!},
+                    backgroundColor: {!! $pageColors !!},
+                }],
+                labels: {!! $pageLabels !!}
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                }
+            }
+        })
+    }
+</script>
 
+@endsection
 @section('js')
 @endsection
