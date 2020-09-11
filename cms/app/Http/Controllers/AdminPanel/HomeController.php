@@ -30,11 +30,15 @@ class HomeController extends Controller
         $pages = Page::count();
         $users = User::count();
 
-        $pagePie = [
-            'Pg 1' => 1,
-            'Pg 2' => 3,
-            'Pg 3' => 2,
-        ];
+        # Dados do gráfico de torta
+        $pagePie = [];
+        $visitsAll = Visitor::selectRaw('page_id, count(page_id) as count')->groupBy('page_id')->get();
+        foreach ($visitsAll as $v) {
+            $page = Page::find($v['page_id']);
+            if (! $page) continue;
+
+            $pagePie[$page->title] = intval($v['count']);
+        }
 
         $pageLabels = json_encode(array_keys($pagePie));
         $pageValues = json_encode(array_values($pagePie));
@@ -43,9 +47,9 @@ class HomeController extends Controller
         foreach ($pagePie as $k => $v) {
             $pageColors[] = $this->generateRandomColor();
         }
-
         $pageColors = json_encode(array_values($pageColors));
 
+        # Retorna os dados para a view
         return view('admin_panel.home', [
             'visits' => $visits,
             'online' => $online,
