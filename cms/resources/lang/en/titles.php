@@ -15,7 +15,7 @@ return [
     'profile' => 'Profile',
     'layout' => 'Layout',
     'online_users' => 'Online Users',
-    'visitors' => 'Visitors',
+    'visits' => 'Visits',
 
     'most_visited' => 'Most Visited',
 
