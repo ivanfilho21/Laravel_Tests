@@ -19,10 +19,13 @@ class HomeController extends Controller
     
     public function index()
     {
+        # Estimativa de pessoas online, isto é, que acessaram alguma página nos últimos 5 minutos
         $limitDate = date('Y-m-d H:i:s', strtotime('-5 minutes'));
         $onlineList = Visitor::select('ip')->where('accessed_at', '>=', $limitDate)->groupBy('ip')->get();
 
-        $visits = Visitor::count();
+        # Inicializando dados básicos do painel principal
+        $visits = Visitor::count(); // Visitas no total
+        // $visits = Visitor::select('ip')->groupBy('ip')->get()->count(); // Visitas únicas
         $online = count($onlineList);
         $pages = Page::count();
         $users = User::count();
