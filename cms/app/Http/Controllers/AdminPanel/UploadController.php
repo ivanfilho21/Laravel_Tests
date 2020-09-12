@@ -10,8 +10,15 @@ class UploadController extends Controller
     
     public function imageUpload(Request $request)
     {
+        $res = var_export($request);
+        return json_encode($res);
         $request->validate([
-            'file' => 'required | image | mimes:jpeg, jpg, png | max:2048'
+            'file' => [
+                'required',
+                'image',
+                'max:2048',
+                ['mimes' => ['jpeg', 'jpg', 'png']],
+            ],
         ]);
 
         $imageName = time().'.'.$request->file->extension();
