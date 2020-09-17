@@ -27,4 +27,4 @@ Route::prefix('panel')->group(function () {
 
 // Auth::routes();
 
-Route::get('/home', 'Site\HomeController@index')->name('site.home');
+Route::get('/home', 'Site\HomeController@index')->name('site.index');
