@@ -6,6 +6,8 @@ Route::redirect('/', 'home');
 
 Route::prefix('panel')->group(function () {
     Route::get('/', 'AdminPanel\HomeController@index')->name('panel.index');
+    Route::put('/', 'AdminPanel\HomeController@storePeriod')->name('panel.storePeriod');
+
     Route::get('/login', 'AdminPanel\Auth\LoginController@index')->name('panel.login');
     Route::post('/login', 'AdminPanel\Auth\LoginController@authenticate');
     Route::get('/register', 'AdminPanel\Auth\RegisterController@index')->name('panel.register');
