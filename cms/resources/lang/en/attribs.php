@@ -8,5 +8,6 @@ return [
     'password_confirmation' => 'Confirm the password',
     'title' => 'Title',
     'body' => 'Body',
-
+    
+    'dashboard_period' => 'Period'
 ];

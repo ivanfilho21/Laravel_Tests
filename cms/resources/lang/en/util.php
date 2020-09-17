@@ -8,6 +8,7 @@ return [
     'delete' => 'Delete',
     'edit' => 'Edit',
     'save' => 'Save',
+    'set' => 'Set',
     'alert' => 'Alert',
     'update_profile' => 'Update Profile',
     'users_update_success' => 'The user was successfully updated.',
