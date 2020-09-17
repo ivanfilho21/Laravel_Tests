@@ -12,6 +12,7 @@
 
 @section('content')
 
+<!-- Selecionar o período de tempo dos dados do Dashboard -->
 <form action="{{ route('panel.storePeriod') }}" method="POST">
 	@csrf
 	@method('PUT')
@@ -21,15 +22,11 @@
 			<label class="col-sm-1 col-form-label text-center">{{ __('attribs.dashboard_period') }}:</label>
 			
 			<div class="col-sm-9">
-				<select name="period" class="form-control">
+				<select name="period" class="form-control" onchange="this.form.submit()">
 				@foreach ($options as $k => $v)
 					<option value="{{ $k }}" {{ $k == $dashboardPeriod ? 'selected' : '' }}>{{ $v['title'] }}</option>
 				@endforeach
 				</select>
-			</div>
-
-			<div class="col-sm-2 text-center">
-				<button type="submit" class="btn btn-default">{{ __('util.set') }}</button>
 			</div>
 		</div>
 	</div>
@@ -110,19 +107,20 @@
 	<div class="col-md-4">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">{{ __('titles.pages_last_added') }}</h3>
+				<h3 class="card-title">{{ __('titles.pages_latest') }}</h3>
 			</div>
 
 			<div class="card-body p-0">
 				<ul class="products-list product-list-in-card pl-2 pr-2">
-
+                    @foreach ($latestPages as $page)
 					<li class="item">
 						<div class="product-img"></div>
 						<div class="product-info">
-							<a href="#" class="product-title">Page</a>
-							<span class="product-description">...</span>
+                            <a href="#" class="product-title">{{ $page->title }}</a>
+                            <span class="product-description">Created by: {{ $page->user }}</span>
 						</div>
-					</li>
+                    </li>
+                    @endforeach
 				</ul>
 			</div>
 
@@ -133,6 +131,36 @@
 	</div>
 </div>
 
+<div class="row">
+    <div class="col-md-8"></div>
+
+    <!-- Sidebar, últimos usuários adicionados -->
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">{{ __('titles.users_latest') }}</h3>
+			</div>
+
+			<div class="card-body p-0">
+				<ul class="products-list product-list-in-card pl-2 pr-2">
+                    @foreach ($latestUsers as $user)
+					<li class="item">
+						<div class="product-img"></div>
+						<div class="product-info">
+                            <a href="#" class="product-title">{{ $user->name }}</a>
+                            <span class="product-description">Created by: {{ $user->creator }}</span>
+						</div>
+                    </li>
+                    @endforeach
+				</ul>
+			</div>
+
+			<div class="card-footer text-center">
+				<a href="#" style="text-transform: uppercase">{{ __('titles.users_view_all') }}</a>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
 @section('js')

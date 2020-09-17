@@ -80,7 +80,10 @@ class HomeController extends Controller
             'pageValues' => $pageValues,
             'pageColors' => $pageColors,
             'options' => $this->options,
-            'dashboardPeriod' => Dashboard::find(1)->value
+            'dashboardPeriod' => Dashboard::find(1)->value,
+            
+            'latestPages' => $this->getLatestPages(),
+            'latestUsers' => $this->getLatestUsers(),
         ]);
     }
 
@@ -106,6 +109,38 @@ class HomeController extends Controller
         $option->save();
 
         return redirect()->back();
+    }
+
+    /**
+     * Retorna as quatro últimas páginas criadas.
+     */
+    private function getLatestPages()
+    {
+        $pages = Page::orderBy('id', 'desc')->limit(4)->get();
+
+        for ($i = 0; $i < count($pages); $i++) {
+            $id = $pages[$i]['created_by'];
+            $user = User::find($id);
+            $pages[$i]['user'] = $user->name ?? '';
+        }
+
+        return $pages;
+    }
+
+    /**
+     * Retorna os quatro últimos usuários criados.
+     */
+    private function getLatestUsers()
+    {
+        $users = User::orderBy('id', 'desc')->limit(4)->get();
+
+        for ($i = 0; $i < count($users); $i++) {
+            $id = $users[$i]['created_by'];
+            $creator = User::find($id);
+            $users[$i]['creator'] = $creator ? $creator->name : __('util.system');
+        }
+
+        return $users;
     }
 
     /**
