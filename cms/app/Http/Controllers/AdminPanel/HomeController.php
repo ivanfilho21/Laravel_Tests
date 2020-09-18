@@ -65,8 +65,8 @@ class HomeController extends Controller
         $pageValues = json_encode(array_values($pageChartData));
         $pageColors = [];
 
-        foreach ($pageChartData as $k => $v) {
-            $pageColors[] = $this->generateRandomColor();
+        foreach ($pageChartData as $title => $value) {
+            $pageColors[] = $this->colorFromTitle($title);
         }
         $pageColors = json_encode(array_values($pageColors));
 
@@ -192,17 +192,14 @@ class HomeController extends Controller
                             ->get();
     }
 
-    private function generateRandomColor()
+    /**
+     * Gera um código de cor em hexadecimal baseado numa string.
+     */
+    private function colorFromTitle($string)
     {
-        $letters = '0123456789ABCDEF';
-        $color = '#';
-
-        for ($i = 0; $i < 6; $i++) {
-            $index = rand(0, strlen($letters) -1);
-            $color .= $letters[$index];
-        }
-
-        return $color;
+        $checksum = md5($string);
+        // Retorna 6 caracteres de checksum iniciando na posição 15
+        return '#' .substr($checksum, 15, 6);
     }
 
 }
