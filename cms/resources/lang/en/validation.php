@@ -118,6 +118,8 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    'title_unique' => 'This title has already been assigned to a page.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

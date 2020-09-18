@@ -12,6 +12,9 @@ return [
     'pages_most_visited' => 'Most Visited Pages',
     'pages_latest' => 'Latest Pages',
     'pages_view_all' => 'View All Pages',
+
+    'menus' => 'Menus',
+
     'users' => 'Users',
     'users_create' => 'New User',
     'users_edit' => 'Edit User',
