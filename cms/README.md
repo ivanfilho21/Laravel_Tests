@@ -64,4 +64,14 @@ CREATE TABLE `visitors` (
     `updated_at` TIMESTAMP NULL,
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `menus` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `parent_id` INT UNSIGNED,
+    `page_id` INT UNSIGNED NOT NULL,
+    `created_by` INT UNSIGNED NOT NULL,
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL,
+    PRIMARY KEY (`id`)
+);
 ```
