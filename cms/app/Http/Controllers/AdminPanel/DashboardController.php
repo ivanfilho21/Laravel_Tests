@@ -11,7 +11,7 @@ use App\Visitor;
 use App\Page;
 use App\User;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
 
     private $dateFormat = 'Y-m-d H:i:s';
