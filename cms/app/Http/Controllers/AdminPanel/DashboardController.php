@@ -71,7 +71,7 @@ class DashboardController extends Controller
         $pageColors = json_encode(array_values($pageColors));
 
         # Retorna os dados para a view
-        return view('admin_panel.home', [
+        return view('admin_panel.dashboard', [
             'visits' => $visits,
             'online' => $online,
             'pages' => $pages,
