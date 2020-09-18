@@ -255,6 +255,11 @@ return [
             'icon' => 'far fa-fw fa-copy',
         ],
         [
+            'text' => 'menus',
+            'url'  => 'panel/menus',
+            'icon' => 'far fa-fw fa-list-alt',
+        ],
+        [
             'text' => 'users',
             'url'  => 'panel/users',
             'icon' => 'fas fa-fw fa-users',
