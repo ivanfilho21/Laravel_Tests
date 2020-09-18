@@ -125,7 +125,7 @@ class PageController extends Controller
         $page->save();
 
         # Se tudo correu bem, redirecionamos de volta com uma mensagem de sucesso
-        return redirect()->back()->with('success', __('util.pages_update_success'));
+        return redirect()->route('pages.index')->with('success', __('util.pages_update_success'));
     }
 
     public function destroy($id)
