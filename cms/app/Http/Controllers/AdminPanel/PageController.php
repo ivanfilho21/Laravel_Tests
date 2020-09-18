@@ -112,8 +112,7 @@ class PageController extends Controller
 
         # 3. Verifica se a validação falhou e então redireciona de volta
         if ($validator->fails()) {
-            echo '<pre>'.var_export($validator->errors(),1).'</pre>';
-            die;
+            $validator->errors()->add('title', __('validation.title_unique'));
             return redirect()->back()
                 ->withErrors($validator)->withInput();
         }
