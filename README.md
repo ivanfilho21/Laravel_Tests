@@ -17,7 +17,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-3. executa as migrations:
+3. execute as migrations:
 ```php
 php artisan migrate
 ```
