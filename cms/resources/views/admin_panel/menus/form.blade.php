@@ -15,7 +15,7 @@
     </div>
     @endif
 
-    <form action="{{ route('menus.store') }}" method="post">
+    <form action="{{ $formRoute }}" method="post">
         @csrf
         @if ($editMode)
             @method('PUT')

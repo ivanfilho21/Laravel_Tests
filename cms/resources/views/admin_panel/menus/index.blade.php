@@ -30,12 +30,12 @@
                 @foreach($menus as $m)
                 <tr>
                     <td>{{ $m->id }}</td>
-                    <td><a href="{{ $m->page_slug ?? $m->page_url }}" target="_blank">{{ $m->name }}</a></td>
+                    <td><a href="{{ $m->url }}" target="_blank">{{ $m->name }}</a></td>
                     <td class="text-center">{{ $m->submenus ? 'Yes' : '' }}</td>
                     <td class="text-center">
                         <a class="btn btn-sm btn-info" href="{{ route('menus.edit', ['menu' => $m->id]) }}">{{ __('util.edit') }}</a>
 
-                        <form class="d-inline" action="{{ route('menus.destroy', ['menu' => $m->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_menus', ['menu' => $m->title]) }}');">
+                        <form class="d-inline" action="{{ route('menus.destroy', ['menu' => $m->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_menus', ['menu' => $m->name]) }}');">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
