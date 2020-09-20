@@ -103,8 +103,9 @@
         </div>
 	</div>
 	
-	<!-- Sidebar, últimas páginas adicionadas -->
+	<!-- Sidebar, últimas páginas e usuários adicionados -->
 	<div class="col-md-4">
+        <!-- Páginas -->
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">{{ __('titles.pages_latest') }}</h3>
@@ -128,15 +129,9 @@
 				<a href="#" style="text-transform: uppercase">{{ __('titles.pages_view_all') }}</a>
 			</div>
 		</div>
-	</div>
-</div>
 
-<div class="row">
-    <div class="col-md-8"></div>
-
-    <!-- Sidebar, últimos usuários adicionados -->
-	<div class="col-md-4">
-		<div class="card">
+        <!-- Usuários -->
+        <div class="card">
 			<div class="card-header">
 				<h3 class="card-title">{{ __('titles.users_latest') }}</h3>
 			</div>

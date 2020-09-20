@@ -17,7 +17,12 @@ class SiteLayoutController extends Controller
 
     public function index()
     {
-        $layout = [];
+        $layout = [
+            'title' => '',
+            'subtitle' => '',
+            'bg_color' => '',
+            'pri_txt_color' => '',
+        ];
         $list = Layout::get();
 
         foreach ($list as $v) {

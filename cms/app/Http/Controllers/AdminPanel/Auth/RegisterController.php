@@ -17,7 +17,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::PANEL_HOME;
 
     public function __construct()
     {
@@ -63,6 +63,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'type' => User::TYPE_ADMIN,
+            'created_by' => 0,
         ]);
     }
 }
