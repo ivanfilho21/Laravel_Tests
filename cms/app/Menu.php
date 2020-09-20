@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
 
+    protected $fillable = [
+        'name', 'page_id', 'page_url', 'created_by'
+    ];
+
     public function getPageAttribute() {
-        return Page::select('title', 'slug')->where('id', $this->page_id)->get()[0];    
+        $id = $this->page_id;
+        return $id ? Page::select('title', 'slug')->where('id', $id)->get()[0] : null;
+    }
+
+    public function getPageSlugAttribute() {
+        return $this->page ? "/$this->page->slug" : null;
     }
 
     public function getSubmenusAttribute() {
