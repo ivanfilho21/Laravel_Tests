@@ -11,13 +11,10 @@ class Menu extends Model
         'name', 'page_id', 'page_url', 'created_by'
     ];
 
-    public function getPageAttribute() {
+    public function getUrlAttribute() {
         $id = $this->page_id;
-        return $id ? Page::select('title', 'slug')->where('id', $id)->get()[0] : null;
-    }
-
-    public function getPageSlugAttribute() {
-        return $this->page ? "/$this->page->slug" : null;
+        $page = $id ? Page::find($id) : null;
+        return $page ? "/{$page->slug}" : $this->page_url;
     }
 
     public function getSubmenusAttribute() {
