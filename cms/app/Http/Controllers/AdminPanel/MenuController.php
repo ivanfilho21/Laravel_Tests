@@ -28,14 +28,55 @@ class MenuController extends Controller
     public function create()
     {
         return view('admin_panel.menus.form', [
-            'menu' => Menu::find(1),
             'pages' => Page::all(),
             'editMode' => false,
+            'formRoute' => route('menus.store'),
         ]);
     }
 
     public function store(Request $request)
     {
+        return $this->validation($request);
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        return view('admin_panel.menus.form', [
+            'menu' => Menu::find($id),
+            'pages' => Page::all(),
+            'editMode' => true,
+            'formRoute' => route('menus.update', ['menu' => $id]),
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->validation($request, $id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $menu = Menu::find($id);
+
+        if ($menu) {
+            $menu->delete();
+        }
+
+        return redirect()->route('menus.index');
+    }
+
+    private function validation(Request $request, $id = null) {
         $data = [];
         $rules = [];
 
@@ -63,63 +104,42 @@ class MenuController extends Controller
                 ->withInput();
         }
 
+        return $this->saveUpdate($data, $id);
+    }
+
+    private function saveUpdate($data, $id = null)
+    {
         // Pega o index da página selecionada e pega a página do banco
         $index = $data['page_site'] ?? null;
         $pages = $index !== null ? Page::all() : null;
-        $page = $pages ? $pages[$index] : null;
+        // $page = $pages ? $pages[$index] : null;
+        $page = $pages[$index] ?? null;
+        $pageId = $page->id ?? null;
 
-        Menu::create([
-            'name' => $data['name'],
-            'page_id' => $page->id ?? null,
-            'page_url' => $data['page_url'] ?? null,
-            'created_by' => Auth::id(),
-        ]);
+        if ($id) {
+            $menu = Menu::find($id);
+
+            if (! $menu) {
+                return redirect()->route('menus.index');
+            }
+
+            $menu->name = $data['name'];
+            $menu->page_id = $pageId;
+            $menu->page_url = $data['page_url'] ?? null;
+            $menu->created_by = Auth::id();
+            $menu->save();
+
+        } else {
+
+            Menu::create([
+                'name' => $data['name'],
+                'page_id' => $pageId,
+                'page_url' => $data['page_url'] ?? null,
+                'created_by' => Auth::id(),
+            ]);
+        }
 
         return redirect()->route('menus.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
