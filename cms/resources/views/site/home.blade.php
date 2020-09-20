@@ -22,12 +22,12 @@
             <ul class="navbar-nav ml-auto">
             @foreach ($menus as $menu)
                 <li class="nav-item @if ($menu->submenus) dropdown @endif">
-                    <a class="nav-link @if ($menu->submenus) dropdown-toggle @endif page-scroll" href="{{ $menu->page->slug }}">{{ $menu->page->title }}</a>
+                    <a class="nav-link @if ($menu->submenus) dropdown-toggle @endif page-scroll" href="{{ $menu->url }}">{{ $menu->name }}</a>
                     @if ($menu->submenus)
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @for ($i = 0; $i < count($menu->submenus); $i++)
-                        @php $sub = $menu->submenus[$i]->page @endphp
-                        <a class="dropdown-item" href="{{ $sub->slug }}"><span class="item-text">{{ $sub->title }}</span></a>
+                        @php $submenu = $menu->submenus[$i] @endphp
+                        <a class="dropdown-item" href="{{ $submenu->url }}"><span class="item-text">{{ $submenu->name }}</span></a>
                         @if ($i < count($menu->submenus) -1)
                         <div class="dropdown-items-divide-hr"></div>
                         @endif
