@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>{{ __('attribs.title') }}</th>
+                    <th>{{ __('attribs.name') }}</th>
                     <th class="text-center">{{ __('attribs.submenu') }}</th>
                     <th class="text-center">{{ __('util.actions') }}</th>
                 </tr>
@@ -30,7 +30,7 @@
                 @foreach($menus as $m)
                 <tr>
                     <td>{{ $m->id }}</td>
-                    <td><a href="" target="_blank">{{ $m->page->title }}</a></td>
+                    <td><a href="{{ $m->page_slug ?? $m->page_url }}" target="_blank">{{ $m->name }}</a></td>
                     <td class="text-center">{{ $m->submenus ? 'Yes' : '' }}</td>
                     <td class="text-center">
                         <a class="btn btn-sm btn-info" href="{{ route('menus.edit', ['menu' => $m->id]) }}">{{ __('util.edit') }}</a>
