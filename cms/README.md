@@ -67,8 +67,10 @@ CREATE TABLE `visitors` (
 
 CREATE TABLE `menus` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(15),
     `parent_id` INT UNSIGNED,
-    `page_id` INT UNSIGNED NOT NULL,
+    `page_id` INT UNSIGNED,
+    `page_url` VARCHAR(256),
     `created_by` INT UNSIGNED NOT NULL,
     `created_at` TIMESTAMP NULL,
     `updated_at` TIMESTAMP NULL,
