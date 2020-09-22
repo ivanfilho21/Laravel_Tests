@@ -36,22 +36,6 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
-                <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('layout.bg_color') }}:</label>
-                    <input type="color" name="bg_color" id="" value="{{ old('bg_color', $layout['bg_color']) }}" class="form-control" style="width: 50px;">
-                    @error('bg_color')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('layout.pri_txt_color') }}:</label>
-                    <input type="color" name="pri_txt_color" id="" value="{{ old('pri_txt_color', $layout['pri_txt_color']) }}" class="form-control" style="width: 50px;">
-                    @error('pri_txt_color')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
             </div>
 
             <div class="card-footer text-center">

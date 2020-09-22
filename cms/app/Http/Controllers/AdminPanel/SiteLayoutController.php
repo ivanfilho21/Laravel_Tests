@@ -20,8 +20,6 @@ class SiteLayoutController extends Controller
         $layout = [
             'title' => '',
             'subtitle' => '',
-            'bg_color' => '',
-            'pri_txt_color' => '',
         ];
         $list = Layout::get();
 
