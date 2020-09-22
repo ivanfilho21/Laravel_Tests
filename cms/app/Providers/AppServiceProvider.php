@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 
 use App\Page;
 use App\Menu;
+use App\Layout;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,5 +40,15 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::share('menus', $menus);
+
+        // Site Layout
+
+        $siteLayout = [];
+        $layouts = Layout::all();
+
+        foreach ($layouts as $layout) {
+            $siteLayout[$layout['name']] = $layout['value'];
+        }
+        View::share('siteLayout', $siteLayout);
     }
 }
