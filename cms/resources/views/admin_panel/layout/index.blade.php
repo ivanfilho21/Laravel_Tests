@@ -22,7 +22,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('layout.title') }}:</label>
+                    <label for="" class="col-form-label">{{ __('attribs.title') }}:</label>
                     <input type="text" name="title" id="" value="{{ old('title', $layout['title']) }}" class="form-control @error('title') is-invalid @enderror">
                     @error('title')
                         <span class="text-danger">{{ $message }}</span>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="" class="col-form-label">{{ __('layout.subtitle') }}:</label>
+                    <label for="" class="col-form-label">{{ __('attribs.subtitle') }}:</label>
                     <input type="text" name="subtitle" id="" value="{{ old('subtitle', $layout['subtitle']) }}" class="form-control @error('subtitle') is-invalid @enderror">
                     @error('subtitle')
                         <span class="text-danger">{{ $message }}</span>

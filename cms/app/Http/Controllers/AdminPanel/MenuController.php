@@ -139,7 +139,12 @@ class MenuController extends Controller
             ]);
         }
 
-        return redirect()->route('menus.index');
+        $msg = $id ? __('messages.menus_update_success') : null;
+        $redirect = redirect()->route('menus.index');
+        if ($msg) {
+            $redirect->with('success', $msg);
+        }
+        return $redirect;
     }
 
 }

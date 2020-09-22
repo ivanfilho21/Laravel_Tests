@@ -62,7 +62,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return redirect()->route('panel.profile')->with('success', __('util.users_update_success'));
+        return redirect()->route('panel.profile')->with('success', __('messages.users_update_success'));
     }
 
 }
