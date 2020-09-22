@@ -30,3 +30,6 @@ Route::prefix('panel')->group(function () {
 // Auth::routes();
 
 Route::get('/home', 'Site\HomeController@index')->name('site.index');
+
+
+Route::fallback('Site\PageController@index');
