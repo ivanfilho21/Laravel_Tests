@@ -29,7 +29,7 @@
                 @foreach($pages as $p)
                 <tr>
                     <td>{{ $p->id }}</td>
-                    <td><a href="" target="_blank">{{ $p->title }}</a></td>
+                    <td><a href="/{{ $p->slug }}" target="_blank">{{ $p->title }}</a></td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ route('pages.edit', ['page' => $p->id]) }}">{{ __('util.edit') }}</a>
 
