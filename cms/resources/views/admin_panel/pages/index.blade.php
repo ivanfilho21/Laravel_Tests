@@ -17,6 +17,7 @@
 
 <div class="card">
     <div class="card-body">
+        @if (count($pages))
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -33,7 +34,7 @@
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ route('pages.edit', ['page' => $p->id]) }}">{{ __('util.edit') }}</a>
 
-                        <form class="d-inline" action="{{ route('pages.destroy', ['page' => $p->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_pages', ['page' => $p->title]) }}');">
+                        <form class="d-inline" action="{{ route('pages.destroy', ['page' => $p->id]) }}" method="post" onsubmit="return confirm('{{ __('messages.confirm_delete_pages', ['page' => $p->title]) }}');">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
@@ -42,8 +43,10 @@
                 </tr>
                 @endforeach
             </tbody>
-            
         </table>
+        @else
+        <h4>{{ __('messages.no_pages') }}</h4>
+        @endif
     </div>
     {{ $pages->links() }}
 </div>

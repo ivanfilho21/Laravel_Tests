@@ -11,6 +11,8 @@ return [
     'page' => 'Page',
     'from_website' => 'From site',
     'external' => 'External',
+    'title' => 'Title',
+    'subtitle' => 'Subtitle',
 
     'submenu' => 'Submenu',
     

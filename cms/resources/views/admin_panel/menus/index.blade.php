@@ -17,6 +17,7 @@
 
 <div class="card">
     <div class="card-body">
+        @if (count($menus))
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -35,7 +36,7 @@
                     <td class="text-center">
                         <a class="btn btn-sm btn-info" href="{{ route('menus.edit', ['menu' => $m->id]) }}">{{ __('util.edit') }}</a>
 
-                        <form class="d-inline" action="{{ route('menus.destroy', ['menu' => $m->id]) }}" method="post" onsubmit="return confirm('{{ __('util.confirm_delete_menus', ['menu' => $m->name]) }}');">
+                        <form class="d-inline" action="{{ route('menus.destroy', ['menu' => $m->id]) }}" method="post" onsubmit="return confirm('{{ __('messages.confirm_delete_menus', ['menu' => $m->name]) }}');">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="{{ __('util.delete') }}" class="btn btn-sm btn-danger">
@@ -44,8 +45,10 @@
                 </tr>
                 @endforeach
             </tbody>
-            
         </table>
+        @else
+        <h4>{{ __('messages.no_menus') }}</h4>
+        @endif
     </div>
     {{ $menus->links() }}
 </div>
