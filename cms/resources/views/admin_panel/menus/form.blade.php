@@ -62,21 +62,19 @@
                     </div>
                 </div>
 
-                <!--
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="submenu_switcher">
                     <label class="custom-control-label" for="submenu_switcher">{{ __('attribs.submenu') }}</label>
                 </div>
 
                 <div class="submenu">
-                    
                     <div class="submenus mb-2"></div>
 
                     <button class="btn btn-primary btn-sm" onclick="return addSubmenuRow()">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
-                -->
+               
             </div>
 
             <div class="card-footer text-center">
@@ -111,7 +109,7 @@
 
 
         // Colocar listener no switcher
-        /* var switcher = document.querySelector('#submenu_switcher');
+        var switcher = document.querySelector('#submenu_switcher');
 
         switcher.addEventListener('click', checkSubmenu)
 
@@ -127,43 +125,57 @@
         function addSubmenuRow() {
             let eSubmenus = document.querySelector('div.submenus')
             let index = submenus.length
-            let eSub = `
-                <div class="input-group input-group-sm mt-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">${index+1}</span>
-                    </div>
 
-                    <select name="submenu[]" class="form-control">
-                        <option value="0"></option>
-                    </select>
+            let eSubmenu = document.createElement('div')
+            let eSubmenuPre = document.createElement('div')
+            let eSubmenuSelect = document.createElement('select')
+            let eSubmenuPost = document.createElement('div')
+            let eSubmenuPostButton = document.createElement('button')
 
-                    <div class="input-group-append">
-                        <button class="btn btn-danger" data-id="${index+1}" onclick="return removeSubmenuRow(this)">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-            `
-            submenus.push('')
-            eSubmenus.innerHTML += eSub
+            eSubmenu.className = 'submenu input-group input-group-sm mt-3'
+            eSubmenuPre.className = 'input-group-prepend'
+            eSubmenuPre.innerHTML = `<span class="input-group-text">${index}</span>`
+            eSubmenuPost.className = 'input-group-append'
+            eSubmenuPostButton.className = 'btn btn-danger'
+            eSubmenuPostButton.innerHTML = `<i class="fa fa-minus"></i>`
+            eSubmenuPostButton.setAttribute('data-index', `${index}`)
+            eSubmenuPostButton.setAttribute('onclick', 'return removeSubmenuRow(this)')
+            eSubmenuPost.appendChild(eSubmenuPostButton)
+            eSubmenu.appendChild(eSubmenuPre)
+            eSubmenu.appendChild(eSubmenuSelect)
+            eSubmenu.appendChild(eSubmenuPost)
+
+            submenus[index] = index
+            eSubmenus.appendChild(eSubmenu)
+
+            console.log(submenus)
+
             return false
         }
 
+        // Bug no delete
         function removeSubmenuRow(elem) {
             if (! elem) {
                 return false
             }
 
-            let all = document.querySelectorAll('.submenus .row')
-            for (let row of all) {
-                let id = row.querySelector('button').getAttribute('data-id')
-                if (id && id == elem.getAttribute('data-id')) {
-                    console.log('equal')
-                    row.remove(elem)
+            let index = elem.dataset.index;
+            let all = document.querySelectorAll('.submenus .submenu')
+
+            console.log(index)
+
+            if (index) {
+                for (let sub of all) {
+                    let i = sub.querySelector('button').dataset.index
+
+                    if (i && i == index) {
+                        sub.remove()
+                    }
                 }
             }
-            // console.log(all)
+            console.log('rem ', index)
+            console.log(submenus)
             return false
-        }*/
+        }
     </script>
 @endsection
